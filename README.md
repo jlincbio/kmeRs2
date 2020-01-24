@@ -22,6 +22,7 @@ R CMD INSTALL <kmeRs2-1.0.0.tar.gz>
 Citation
 ----------
 Please cite the original kmeRs by R. Urniaz if you use kmeRs2:
+
 Urniaz R., "kmeRs: an R package for k-mers similarity score calculations", Version 1.0, 2018. URL: [cran.r-project.org/package=kmeRs](https://cran.r-project.org/package=kmeRs).
 
 Additionally, `kmeRs_generate_kmers` and `kmeRs_twoSeqSim` were sourced from [tcR](https://cran.r-project.org/web/packages/tcR/index.html) and [rDNAse](https://cran.r-project.org/web/packages/rDNAse/index.html), respectively.
