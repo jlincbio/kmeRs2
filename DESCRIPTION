@@ -1,0 +1,19 @@
+Package: kmeRs2
+Title: k-Mers Similarity Score Matrix 2
+Version: 2.0.0
+Authors@R: c(
+	person("Rafal", "Urniaz", comment = c(ORCID = "0000-0003-0192-2165"),
+		email = "rafal.urniaz@gmail.com", role = c("aut")),
+	person("Jason", "Lin", email = "linjason@chiba-cc.jp", role = c("cre", "ctb")))
+Description: This is an updated version of kmeRs with support for both DNA and amino acid k-mers, along with faster package loading times, performance and similarity score heatmap support.
+Depends: R (>= 3.4.0)
+License: GPL-3
+Encoding: UTF-8
+URL: https://github.com/jlincbio/kmeRs2
+BugReports: https://github.com/jlincbio/kmeRs2/issues
+LazyData: true
+biocViews: Software
+Imports: utils, stats, Biostrings
+Suggests: RColorBrewer, knit, rmarkdown
+RoxygenNote: 6.1.1
+VignetteBuilder: knits

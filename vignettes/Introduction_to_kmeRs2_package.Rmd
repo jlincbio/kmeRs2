@@ -1,0 +1,79 @@
+---
+title: "Introduction to the kmeRs2 package"
+author:
+- name: Jason Lin, PhD^[Chiba Cancer Center Research Institute, Chiba, Japan]
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+  # pdf_document
+  # md_document:
+  #    variant: markdown_github
+bibliography: citations.bib
+vignette: >
+  %\VignetteIndexEntry{Introduction to the kmeRs R package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+## Introduction
+
+This is an updated version of kmeRs with support for both DNA and amino acid k-mers, along with faster package loading times, performance and similarity score heatmap support. The package contains tools to calculate similarity score matrix for DNA k-mers, with local or global pairwise similarity scores calculated by Needleman-Wunsch [@NEEDLEMAN1970443] or Smith-Waterman [@SMITH1981195] alignments.
+
+### Import the package first
+   
+```{r} 
+# Import the package 
+  library(kmeRs2)
+```
+
+### Example 1. How to display PAM or BLOSUM matrix used for calculation?
+
+Simply apply the **kmeRs_similarity_matrix** function and mark as an input the vector contains the nucleotides letters for witch the score should be calculated.    
+
+```{r} 
+# Simple BLOSUM62 similarity matrix for amino acids
+  blosum62 <- kmeRs_similarity_matrix()
+# Simple PAM90 similarity matrix for standard nucleotides
+  pam90 <- kmeRs_similarity_matrix(seq.type = "DNA")
+```
+
+### Example 2. How to find the most *'different'* k-mer from the given set of k-mers?
+
+In this example, the most *'different'* k-mer to "GATTACA" sequence will be indicated from given set of heptamers. Here, 7 heptamer (being an anagram of the movie title "GATTACA") are given, as follow:  
+
+```{r} 
+# Given hexamers
+  kmers_given <- c("GATTACA", "ACAGATT", "GAATTAC", "GAAATCT", "CTATAGA", "GTACATA", "AACGATT")
+# Matrix calculation 
+  kmers_mat <- kmeRs_similarity_matrix(q = "GATTACA", x = kmers_given, submat = "BLOSUM62")
+```
+
+Now, applying **kmeRs_score** function the total score is calculated and the matrix is sorted by decreasing score value. The lowest value (in case of BLOSUM) indicates the most *'different'* sequence from given k-mers, in contrast to the highest value which indicates the most similar one. 
+
+```{r} 
+# Score and sort the matrix in decreasing order
+  k_res <- kmeRs_score(kmers_mat, decreasing = TRUE)
+```
+
+As can be observed, the most *'different'* sequence to GATTACA is ACAGATT with total score equal to 1 and the most similar to GATTACA sequence is of course GATTACA sequence with the highest score equal to 37. 
+
+### Example 3. Calculate basic statistics and display a similarity heatmap
+
+Applying function **kmeRs_statistics** to the result matrix will compute basic statistics as additional columns. When **summary_statistics_only** is set to TRUE only summary table is returned. It is much more elegant way to present results, especially in case of *'big data'* output.
+
+```{r}
+# Compare list of k-mers with others in the same list
+  kmers_mat <- kmeRs_similarity_matrix(q = kmers_given, submat = "BLOSUM62")
+# Score and sort the matrix in decreasing order
+  k_res <- kmeRs_score(kmers_mat, decreasing = TRUE)
+# Display basic statistics
+  rstats <- kmeRs_statistics(kmers_mat)
+  rstats[,1:(dim(rstats)[2] - 4)]
+```
+
+## References
