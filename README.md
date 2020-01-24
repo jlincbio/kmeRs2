@@ -1,6 +1,6 @@
 # kmeRs2: k-Mers Similarity Score Matrix
 
-This is an updated version of [kmeRs](https://github.com/RafalUrniaz/kmeRs) with support for both DNA and amino acid k-mers, along with faster package loading times, performance and similarity score heatmap support. *kmeRs2* contains tools to calculate Needleman-Wunsch or Smith-Waterman similarity score matrices with based on user's choice of PAM or BLOSUM substitution methods.
+This is an updated version of [kmeRs](https://github.com/RafalUrniaz/kmeRs) with native R support for both DNA and amino acid k-mers, along with faster package loading times, performance and the ability to plot similarity score heatmap in R. *kmeRs2* contains tools to calculate Needleman-Wunsch or Smith-Waterman similarity score matrices with based on user's choice of PAM or BLOSUM substitution methods.
 
 ## Installation
 ```
