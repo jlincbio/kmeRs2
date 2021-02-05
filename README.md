@@ -8,7 +8,7 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 BiocManager::install("Biostrings")
 # install.packages("devtools")
-devtools::install_github("jlincbio/kmeRs2/")
+devtools::install_github("jlincbio/kmeRs2")
 ```
 Alternatively, use the release tarball and install via the command line:
 ```
